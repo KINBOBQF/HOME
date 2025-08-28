@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中山市景博企服务咨询有限公司 - 专业出口退税解决方案与服务手册</title>
+    <script src="https://cdn.tailwindcss.com/3.3.3"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(30, 41, 59, 0.1);
+        }
+        .highlight {
+            background-color: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid #3b82f6;
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
+        .bg-primary {
+            background-color: #1d4ed8;
+        }
+        .bg-accent {
+            background-color: #ea580c;
+        }
+        .text-primary {
+            color: #1d4ed8;
+        }
+        .text-accent {
+            color: #ea580c;
+        }
+        .chart-container {
+            height: 320px;
+            width: 100%;
+            position: relative;
+        }
+        .mobile-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            margin: 0.5rem;
+            border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            transform-origin: top;
+            transform: scaleY(0);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            z-index: 100;
+        }
+        .mobile-menu.active {
+            transform: scaleY(1);
+            opacity: 1;
+        }
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #1d4ed8;
+        }
+        .timeline-line {
+            width: 2px;
+            background-color: #e2e8f0;
+        }
+        .data-pill {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            background: rgba(59, 130, 246, 0.1);
+            color: #1d4ed8;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- 导航条 -->
+    <nav class="glassmorphism sticky top-0 z-50 p-4 mb-8" id="mainNav">
+        <div class="container mx-auto flex items-center justify-between">
+            <div class="text-xl font-bold text-primary">
+                <i class="fas fa-file-invoice-dollar mr-2"></i>景博企服 - 出口退税解决方案
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#about" class="text-slate-600 hover:text-primary transition-colors">公司概况</a>
+                <a href="#services" class="text-slate-600 hover:text-primary transition-colors">核心服务</a>
+                <a href="#policy" class="text-slate-600 hover:text-primary transition-colors">政策合规</a>
+                <a href="#contact" class="text-slate-600 hover:text-primary transition-colors">联系我们</a>
+            </div>
+            <button class="md:hidden text-slate-600 focus:outline-none" id="mobileMenuButton" aria-label="导航菜单">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- 移动端导航菜单 -->
+            <div class="mobile-menu md:hidden" id="mobileMenu">
+                <a href="#about" class="text-slate-600 hover:text-primary transition-colors flex items-center">
+                    <i class="fas fa-building mr-3 text-primary"></i>公司概况
+                </a>
+                <a href="#services" class="text-slate-600 hover:text-primary transition-colors flex items-center">
+                    <i class="fas fa-hand-holding-usd mr-3 text-primary"></i>核心服务
+                </a>
+                <a href="#policy" class="text-slate-600 hover:text-primary transition-colors flex items-center">
+                    <i class="fas fa-file-alt mr-3 text-primary"></i>政策合规
+                </a>
+                <a href="#contact" class="text-slate-600 hover:text-primary transition-colors flex items-center">
+                    <i class="fas fa-phone-alt mr-3 text-primary"></i>联系我们
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 头部横幅 -->
+    <header class="container mx-auto py-16 px-4 md:px-8 relative">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 text-primary">
+                专业出口退税解决方案与服务手册
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-600 mb-8">中山市景博企服务咨询有限公司 - 助力企业合规退税</p>
+            <div class="flex justify-center gap-4">
+                <div class="glassmorphism p-4 text-center w-32">
+                    <div class="text-sm text-slate-500">服务企业</div>
+                    <div class="text-2xl font-bold text-primary">100+</div>
+                </div>
+                <div class="glassmorphism p-4 text-center w-32">
+                    <div class="text-sm text-slate-500">退税周期</div>
+                    <div class="text-2xl font-bold text-primary">45天</div>
+                </div>
+                <div class="glassmorphism p-4 text-center w-32">
+                    <div class="text-sm text-slate-500">合规率</div>
+                    <div class="text-2xl font-bold text-primary">99.5%</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 公司概况部分 -->
+    <section id="about" class="container mx-auto py-12 px-4 md:px-8">
+        <div class="glassmorphism p-8 mb-16">
+            <h2 class="text-3xl font-bold mb-6 flex items-center">
+                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white mr-3">
+                    <i class="fas fa-building"></i>
+                </div>
+                公司概况
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <p class="mb-4">作为一家专注于出口退税领域的专业咨询机构，中山市景博企服务咨询有限公司始终以<span class="font-bold text-primary">"专业出口退税合规化服务商"</span>为核心定位，致力于为企业提供精准的退税解决方案。</p>
+                    <p class="mb-4">公司深知企业在退税过程中面临的痛点与挑战，因此将<span class="font-bold text-primary">"解决企业退税难题、推动合规经营"</span>作为核心使命，力求通过专业服务为企业扫清退税障碍，确保每一笔退税都合法合规。</p>
+
+                    <div class="highlight">
+                        <p class="font-bold mb-2">针对当前部分企业存在的"假自营真代理"模式风险，公司的核心目标是：</p>
+                        <p>引导企业转向真正的自营出口退税操作。通过科学拆分业务流程，协同工厂共同做好自营出口退税业务，帮助企业建立规范的退税流程，让企业真正掌握退税主动权，实现健康可持续的出口发展。</p>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center">
+                    <img src="https://s.coze.cn/image/qVWaiFUdhb8/" alt="景博企服务咨询公司" class="rounded-lg shadow-lg w-full max-w-md">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心服务体系部分 -->
+    <section id="services" class="container mx-auto py-12 px-4 md:px-8">
+        <h2 class="text-3xl font-bold mb-12 text-center text-primary">核心服务体系</h2>
+
+        <!-- 报关报检服务 -->
+        <div class="glassmorphism p-8 mb-12 card-hover">
+            <div class="flex items-center mb-6">
+                <div class="service-icon bg-primary">
+                    <i class="fas fa-passport"></i>
+                </div>
+                <h3 class="text-2xl font-semibold ml-4">报关报检服务</h3>
+            </div>
+            <p class="text-slate-600 mb-6">对于出口企业而言，报关报检环节犹如打开国际市场的"第一把钥匙"，其合规性直接决定了后续退税流程能否顺利推进。中山市景博企服务咨询有限公司将报关报检服务定位为<span class="font-bold text-primary">"出口退税合规化的首要环节"</span>，通过专业指导与细致审核，帮助企业夯实出口业务的基础。</p>
+
+            <div class="highlight">
+                <p class="font-bold mb-2">核心服务内容</p>
+                <ul class="list-disc pl-5 space-y-2">
+                    <li><span class="font-bold">报关流程全链路指导</span>：从单据准备、商品编码归类到申报系统操作，提供 step-by-step 实操支持，避免因流程疏漏导致的通关延误。</li>
+                    <li><span class="font-bold">报检资料精准审核</span>：针对商检要求的各类文件（如发票、装箱单、合同等）进行合规性校验，确保符合海关与检验检疫部门的最新监管标准。</li>
+                </ul>
+            </div>
+
+            <p class="text-slate-600 mt-4">该服务的关键价值在于<span class="font-bold text-primary">"与后续退税业务的深度衔接"</span>。许多企业因对出口流程不熟悉，常出现报关信息与退税申报数据不一致的问题，导致退税周期拉长甚至无法正常退税。景博企服通过在报关报检阶段提前规划数据逻辑，确保报关单、进项发票、出口合同等关键凭证的信息统一性，从源头降低退税风险，让企业在"出口-退税"全链条中少走弯路。</p>
+        </div>
+
+        <!-- 外贸单证咨询与代办服务 -->
+        <div class="glassmorphism p-8 mb-12 card-hover">
+            <div class="flex items-center mb-6">
+                <div class="service-icon bg-primary">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <h3 class="text-2xl font-semibold ml-4">外贸单证咨询与代办服务</h3>
+            </div>
+            <p class="text-slate-600 mb-6">外贸人都知道，单证处理是出口业务的"生命线"——一份单据的微小误差，可能导致信用证拒付、退税延误，甚至影响整笔订单的资金周转。中山市景博企服务咨询有限公司深耕外贸服务多年，针对企业在单证环节的痛点，推出<span class="font-bold text-primary">"咨询+代办"双轨服务</span>，让专业团队为您的出口单证"保驾护航"。</p>
+
+            <h4 class="text-xl font-semibold mb-4 text-primary">咨询服务：提前规避风险，让单证"零失误"</h4>
+            <p class="text-slate-600 mb-4">面对复杂的国际贸易规则，企业常因对信用证条款理解偏差、单证制作不规范而踩坑。我们的咨询服务聚焦两大核心需求：</p>
+            <ul class="list-disc pl-5 space-y-2 mb-6">
+                <li><span class="font-bold">信用证风险审核</span>：专业团队逐条款解析信用证，识别"软条款""陷阱条款"等潜在风险，提前给出修改建议，避免因条款不符导致的货款损失。</li>
+                <li><span class="font-bold">单证规范指导</span>：从发票、装箱单到提单，提供全流程单证制作标准，明确各国海关特殊要求（如欧盟CE认证、中东COC证书等），确保单证与贸易合同、报关信息完全匹配。</li>
+            </ul>
+
+            <div class="highlight">
+                <p class="font-bold">风险提示：</p>
+                <p>据海关总署数据，超30%的出口退税延误源于单证不符。通过专业咨询提前规范单证，可将退税周期缩短5-10个工作日。</p>
+            </div>
+
+            <h4 class="text-xl font-semibold mb-4 text-primary mt-6">代办服务：一站式搞定高频单证，合规高效两不误</h4>
+            <p class="text-slate-600 mb-4">对于企业高频需求的单证类型，我们提供全程代办服务，省去企业跑部门、填表格的繁琐流程：</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div class="bg-blue-50 rounded-lg p-4">
+                    <h5 class="font-bold text-blue-700 mb-2"><i class="fas fa-certificate mr-2"></i>产地证类</h5>
+                    <p class="text-sm text-slate-600">快速办理一般原产地证（CO）、普惠制原产地证（FORM A）、东盟原产地证（FORM E）等</p>
+                </div>
+                <div class="bg-blue-50 rounded-lg p-4">
+                    <h5 class="font-bold text-blue-700 mb-2"><i class="fas fa-stamp mr-2"></i>商事证明</h5>
+                    <p class="text-sm text-slate-600">代办贸促会认证的商业发票、装箱单等文件</p>
+                </div>
+                <div class="bg-blue-50 rounded-lg p-4">
+                    <h5 class="font-bold text-blue-700 mb-2"><i class="fas fa-flag mr-2"></i>使馆加签</h5>
+                    <p class="text-sm text-slate-600">覆盖中东、南美等需要使馆认证的国家</p>
+                </div>
+            </div>
+
+            <p class="text-slate-600">无论是咨询还是代办，我们始终以<span class="font-bold text-primary">"合规性把控"</span>为核心。团队成员平均拥有8年以上单证处理经验，熟悉全球200+国家的贸易单证规则，通过"初审+复核"双重校验机制，将单证错误率控制在0.5%以下，从源头降低因单证问题导致的退税延误、货物滞港等风险。</p>
+        </div>
+
+        <!-- 出口退税培训与指导服务 -->
+        <div class="glassmorphism p-8 mb-12 card-hover">
+            <div class="flex items-center mb-6">
+                <div class="service-icon bg-primary">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <h3 class="text-2xl font-semibold ml-4">出口退税培训与指导服务</h3>
+            </div>
+            <p class="text-slate-600 mb-6">在出口退税实务中，<span class="font-bold text-primary">"专业人才缺失"</span>往往是企业自营退税的最大拦路虎——财务人员不熟悉申报流程导致退税延误，业务团队不了解政策细节造成资料瑕疵，这些问题直接影响企业资金周转与合规经营。中山市景博企服务咨询有限公司聚焦这一核心痛点，推出<span class="font-bold text-primary">"赋能企业自营退税能力"专项培训服务</span>，通过系统化、场景化的培训体系，帮助企业打造"懂政策、会操作、能应变"的专业退税团队。</p>
+
+            <h4 class="text-xl font-semibold mb-4 text-primary">分层培训体系：精准匹配企业需求</h4>
+            <p class="text-slate-600 mb-4">针对不同岗位的能力要求，培训服务设计为三层递进式体系，确保覆盖企业全流程退税需求：</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div class="bg-blue-50 rounded-lg p-4">
+                    <h5 class="font-bold text-blue-700 mb-2"><i class="fas fa-graduation-cap mr-2"></i>基础操作培训</h5>
+                    <p class="text-sm text-slate-600">面向退税新手及业务助理，从出口退税系统注册、报关单录入、发票认证等基础步骤入手</p>
+                </div>
+                <div class="bg-blue-50 rounded-lg p-4">
+                    <h5 class="font-bold text-blue-700 mb-2"><i class="fas fa-calculator mr-2"></i>财务人员专项指导</h5>
+                    <p class="text-sm text-slate-600">聚焦财务团队的深度需求，内容涵盖退税账务处理、增值税申报与退税衔接、风险疑点排查等</p>
+                </div>
+                <div class="bg-blue-50 rounded-lg p-4">
+                    <h5 class="font-bold text-blue-700 mb-2"><i class="fas fa-book-open mr-2"></i>政策动态解读</h5>
+                    <p class="text-sm text-slate-600">定期开展政策更新培训，针对国家税务总局发布的退税新规、监管重点调整等内容</p>
+                </div>
+            </div>
+
+            <h4 class="text-xl font-semibold mb-4 text-primary">"手把手教学+案例实操"：让理论落地为能力</h4>
+            <p class="text-slate-600 mb-4">区别于传统"填鸭式"培训，景博企服采用<span class="font-bold text-primary">"手把手教学+真实案例实操"</span>的沉浸式模式：培训师以企业实际发生的出口业务为样本，带领学员完整走一遍退税全流程——从合同评审时的退税筹划，到报关出口后的单据整理，再到申报系统中的数据填报与疑点处理。</p>
+            <p class="text-slate-600 mb-6">每个环节均设置"错误模拟"场景（如发票信息与报关单不符、进项税额转出计算错误等），让学员在纠错过程中深化理解，真正做到"学完就能用"。</p>
+
+            <div class="highlight">
+                <p class="font-bold">培训核心价值：</p>
+                <p>通过分层赋能与实战教学，帮助企业摆脱对外部机构的依赖，培养"自己人"掌握退税主动权。无论是初创型企业搭建退税体系，还是成熟企业提升团队专业度，都能在这里找到适配的解决方案，让出口退税从"合规负担"转变为"资金加速器"。</p>
+            </div>
+        </div>
+
+        <!-- 退税备案单证管理系统服务 -->
+        <div class="glassmorphism p-8 mb-12 card-hover">
+            <div class="flex items-center mb-6">
+                <div class="service-icon bg-primary">
+                    <i class="fas fa-archive"></i>
+                </div>
+                <h3 class="text-2xl font-semibold ml-4">退税备案单证管理系统服务</h3>
+            </div>
+            <p class="text-slate-600 mb-6">出口退税备案单证管理是企业合规经营的关键环节，但许多企业常面临单证散落难收集、分类混乱易遗漏、合规性存疑等问题，不仅增加管理成本，更可能因备案不合规导致退税延迟或风险。面对这些痛点，景博企服务咨询有限公司推出的退税备案单证管理系统服务，通过<span class="font-bold text-primary">"系统智能化+人工专业化"</span>的双重保障，为企业提供全流程解决方案。</p>
+
+            <p class="text-slate-600 mb-6">系统端依托智能化技术，实现三大核心功能：<span class="font-bold text-primary">"单证自动收集"</span>可对接企业多平台数据，自动抓取出口报关单、进项发票等关键凭证，告别手动上传的繁琐；<span class="font-bold text-primary">"分类存储"</span>采用标准化归档逻辑，按业务类型、时间周期等维度智能归类，支持快速检索与调阅；<span class="font-bold text-primary">"合规校验"</span>功能则内置最新政策法规算法，实时扫描单证信息完整性与逻辑性，提前预警填写错误、资料缺失等问题。</p>
+
+            <div class="highlight">
+                <p class="font-bold">双重保障价值：</p>
+                <p>系统智能提升效率，减少90%以上的人工录入工作；人工专业把控风险，将备案不合规率降至0.5%以下，双管齐下帮助企业彻底摆脱"管理混乱、合规性存疑"的困扰，确保退税流程高效顺畅，资金快速到账。</p>
+            </div>
+        </div>
+
+        <!-- 广交会摊位申请咨询服务 -->
+        <div class="glassmorphism p-8 mb-12 card-hover">
+            <div class="flex items-center mb-6">
+                <div class="service-icon bg-primary">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <h3 class="text-2xl font-semibold ml-4">广交会摊位申请咨询服务</h3>
+            </div>
+            <p class="text-slate-600 mb-6">对于众多渴望通过广交会开拓海外市场的企业来说，<span class="font-bold text-primary">"展会资源获取难"</span>常常成为制约业务发展的"拦路虎"。中山市景博企服务咨询有限公司推出的广交会摊位申请咨询服务，正是聚焦这一核心痛点打造的<span class="font-bold text-primary">"出口业务拓展增值服务"</span>，为企业打通参展通道提供专业支持。</p>
+
+            <p class="text-slate-600 mb-6">该服务通过三大维度构建完整解决方案：首先是<span class="font-bold text-primary">"政策解读"</span>，帮助企业精准把握广交会摊位申请的最新政策细则与申报门槛，避免因信息不对称错失机会；其次是<span class="font-bold text-primary">"材料准备指导"</span>，提供从资料清单梳理到文件规范化填写的全流程辅导，确保申报材料符合官方标准；最后是<span class="font-bold text-primary">"流程跟进"</span>，由专人实时追踪申请进度，及时反馈审批动态并协助解决过程中的各类疑难问题。</p>
+
+            <div class="highlight">
+                <p class="font-bold">服务核心价值：</p>
+                <ul class="list-disc pl-5 space-y-2">
+                    <li>破解"一位难求"困境，提升摊位申请成功率</li>
+                    <li>节省企业人力成本，让专业团队处理复杂流程</li>
+                    <li>与出口退税服务形成协同，构建"参展获客-出口成交-退税增收"的业务闭环</li>
+                </ul>
+            </div>
+
+            <p class="text-slate-600 mt-4">值得关注的是，这项服务与景博企的出口退税服务形成深度联动，共同构成<span class="font-bold text-primary">"出口全链条支持体系"</span>。企业不仅能通过专业咨询顺利获取展会资源，还能在后续的出口退税环节享受高效服务，实现从"走出去"拓展市场到"落袋为安"的全流程保障，为外贸业务发展注入强劲动力。</p>
+        </div>
+    </section>
+
+    <!-- 政策合规与行业洞察部分 -->
+    <section id="policy" class="container mx-auto py-12 px-4 md:px-8">
+        <h2 class="text-3xl font-bold mb-12 text-center text-primary">政策合规与行业洞察</h2>
+
+        <!-- 2025年财税新政解读 -->
+        <div class="glassmorphism p-8 mb-12 card-hover">
+            <div class="flex items-center mb-6">
+                <div class="service-icon bg-primary">
+                    <i class="fas fa-file-invoice"></i>
+                </div>
+                <h3 class="text-2xl font-semibold ml-4">2025年财税新政解读</h3>
+            </div>
+            <p class="text-slate-600 mb-6">2025年财税新政的落地，给出口退税领域带来了结构性调整，其中最受关注的莫过于<span class="font-bold text-primary">"假自营真代理"模式的全面叫停"</span>。这种曾在行业内广泛存在的传统代理退税方式，因存在责任划分模糊、监管难度大等问题，已无法适应新政要求。从政策导向来看，监管层通过<span class="font-bold text-primary">"提高代理资质门槛"</span>和<span class="font-bold text-primary">"明确各方责任边界"</span>两大核心举措，彻底堵死了旧模式的生存空间。</p>
+
+            <p class="text-slate-600 mb-6">为什么"假自营真代理"必须退出历史舞台？简单来说，这种模式下代理方常以"自营"名义为企业办理退税，但实际并未参与真实贸易流程，导致税务风险难以追溯。新政实施后，此类业务不仅面临<span class="font-bold text-primary">"税务处罚风险"</span>，还可能影响企业信用评级。对于依赖这种模式的出口企业而言，转型已不是选择题，而是生存必需。</p>
+
+            <div class="highlight">
+                <p class="font-bold">新政转型核心要点</p>
+                <ol class="list-decimal pl-5 space-y-2">
+                    <li><span class="font-bold">模式切换</span>：立即停止"假自营真代理"操作，评估外贸综合服务企业合作可行性</li>
+                    <li><span class="font-bold">资质审查</span>：优先选择具备新政要求资质的服务方，避免因代理方不合规导致退税延误</li>
+                    <li><span class="font-bold">流程衔接</span>：提前梳理现有业务流程，确保与新代理模式的财务、税务数据无缝对接</li>
+                </ol>
+            </div>
+
+            <p class="text-slate-600 mt-4">对于习惯传统模式的企业而言，转型期可能面临短期阵痛，但从长远看，新政推动的规范化发展将减少灰色地带，让出口退税业务更透明、更可控。景博企提醒，企业应抓住政策窗口期，尽快完成模式切换，以避免因合规问题影响正常出口业务。</p>
+        </div>
+
+        <!-- 假自营真代理模式的风险剖析 -->
+        <div class="glassmorphism p-8 mb-12 card-hover">
+            <div class="flex items-center mb-6">
+                <div class="service-icon bg-primary">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h3 class="text-2xl font-semibold ml-4">假自营真代理模式的风险剖析</h3>
+            </div>
+            <p class="text-slate-600 mb-6">在出口业务中，一种隐蔽却普遍的合作模式正悄然埋下风险隐患——许多企业主可能在不知不觉中采用了"假自营真代理"模式。这种看似便捷的合作方式，实则如同隐藏的定时炸弹，其风险贯穿法律、税务与经营三大核心领域，需要企业高度警惕。</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div class="bg-red-50 rounded-lg p-4">
+                    <h4 class="font-bold text-red-700 mb-2"><i class="fas fa-gavel mr-2"></i>法律风险</h4>
+                    <p class="text-sm text-slate-600">违反《对外贸易法》及税收征管相关规定，面临法律追责</p>
+                </div>
+                <div class="bg-red-50 rounded-lg p-4">
+                    <h4 class="font-bold text-red-700 mb-2"><i class="fas fa-file-invoice-dollar mr-2"></i>税务风险</h4>
+                    <p class="text-sm text-slate-600">退税款被追缴，处以罚款，可能被列入税收违法"黑名单"</p>
+                </div>
+                <div class="bg-red-50 rounded-lg p-4">
+                    <h4 class="font-bold text-red-700 mb-2"><i class="fas fa-business-time mr-2"></i>经营风险</h4>
+                    <p class="text-sm text-slate-600">失去对出口渠道、客户资源及退税流程的控制权</p>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <p class="font-bold">风险警示：</p>
+                <p>近期某电子企业因长期依赖假自营真代理模式，被税务部门查实后追缴退税款 230 万元，并处以 50 万元罚款，同时暂停出口退税资格 1 年，直接导致其海外订单交付延误，客户流失率达 35%。</p>
+            </div>
+
+            <p class="text-slate-600 mt-4">对于出口企业而言，认清假自营真代理模式的风险本质，建立合规的出口退税体系，才是保障业务长远发展的关键。与其在风险边缘试探，不如选择专业机构合作，从源头上规避法律与税务风险，牢牢掌握经营主动权。</p>
+        </div>
+
+        <!-- 自营出口退税的合规路径优势 -->
+        <div class="glassmorphism p-8 mb-12 card-hover">
+            <div class="flex items-center mb-6">
+                <div class="service-icon bg-primary">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 class="text-2xl font-semibold ml-4">自营出口退税的合规路径优势</h3>
+            </div>
+            <p class="text-slate-600 mb-6">在出口退税的实操中，许多中山外贸企业常面临选择困境：是依赖第三方代理，还是自主掌控流程？<span class="font-bold text-primary">"自营出口退税作为真正的退税操作模式"</span>，与外贸综合服务模式相比，展现出不可替代的核心优势，尤其适合追求长期合规与自主发展的企业。</p>
+
+            <h4 class="text-xl font-semibold mb-4 text-primary">自营模式 vs 外贸综合服务模式：三大核心差异</h4>
+            <p class="text-slate-600 mb-6">自营出口退税的独特价值，首先体现在对流程的绝对掌控力上。企业直接主导从报关到退税申报的全流程，无需依赖第三方代理的信息传递，<span class="font-bold text-primary">"退税进度实时可见、关键节点自主把控"</span>。这种"亲力亲为"不仅避免了信息滞后风险，更让企业成为退税责任的唯一主体——税务风险自担自控，清晰界定的权责关系能有效减少因代理失误导致的纠纷。</p>
+
+            <div class="overflow-x-auto mb-6">
+                <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                    <thead class="bg-primary text-white">
+                        <tr>
+                            <th class="py-3 px-4 text-left">对比维度</th>
+                            <th class="py-3 px-4 text-left">传统代理模式</th>
+                            <th class="py-3 px-4 text-left">自营退税模式</th>
+                            <th class="py-3 px-4 text-left">景博企服务</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <td class="py-3 px-4">资金安全性</td>
+                            <td class="py-3 px-4 text-red-500">资金需经第三方账户，存在挪用风险</td>
+                            <td class="py-3 px-4">企业自主收款，资金直达对公账户</td>
+                            <td class="py-3 px-4 text-green-500">企业自主收款，资金直达对公账户</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4">退税效率</td>
+                            <td class="py-3 px-4">3个月以上</td>
+                            <td class="py-3 px-4">2-3个月</td>
+                            <td class="py-3 px-4 text-green-500">45天</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4">合规风险</td>
+                            <td class="py-3 px-4 text-red-500">高</td>
+                            <td class="py-3 px-4">中</td>
+                            <td class="py-3 px-4 text-green-500">低</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4">人力成本</td>
+                            <td class="py-3 px-4">代理费+人力成本</td>
+                            <td class="py-3 px-4">专职人员成本</td>
+                            <td class="py-3 px-4 text-green-500">仅服务费，无需专职人员</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="highlight">
+                <p class="font-bold">企业选择自营退税的核心价值</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-green-50 rounded-lg p-3">
+                        <p class="font-bold text-green-700"><i class="fas fa-check-circle mr-2"></i>合规底线更稳固</p>
+                        <p class="text-sm text-slate-600">直接对接税务部门，申报数据真实可追溯，降低稽查风险</p>
+                    </div>
+                    <div class="bg-green-50 rounded-lg p-3">
+                        <p class="font-bold text-green-700"><i class="fas fa-check-circle mr-2"></i>成本控制更主动</p>
+                        <p class="text-sm text-slate-600">省去代理服务费，退税资金直达企业账户，加速资金周转</p>
+                    </div>
+                    <div class="bg-green-50 rounded-lg p-3">
+                        <p class="font-bold text-green-700"><i class="fas fa-check-circle mr-2"></i>能力沉淀更长效</p>
+                        <p class="text-sm text-slate-600">掌握核心操作技能，为后续拓展多品类、多市场出口奠定基础</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-slate-600 mt-6">对于中山外贸企业而言，自营出口退税不是"选择题"，而是<span class="font-bold text-primary">"构建合规竞争力的必然选择"</span>。景博企以"专业服务+自主掌控"的双重保障，帮助企业突破能力瓶颈，轻松享受政策红利，让每一笔出口业务都走得更稳、更远。</p>
+        </div>
+    </section>
+
+    <!-- 品牌战略与价值主张部分 -->
+    <section class="container mx-auto py-12 px-4 md:px-8">
+        <h2 class="text-3xl font-bold mb-12 text-center text-primary">品牌战略与价值主张</h2>
+
+        <!-- 品牌核心定位 -->
+        <div class="glassmorphism p-8 mb-12 card-hover">
+            <div class="flex items-center mb-6">
+                <div class="service-icon bg-primary">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h3 class="text-2xl font-semibold ml-4">品牌核心定位</h3>
+            </div>
+            <p class="text-slate-600 mb-6">在出口退税领域，许多企业常常面临一个共性难题：<span class="font-bold text-primary">"专业人才短缺"</span>。复杂的政策法规、频繁变动的申报要求，让不少企业在自营退税时倍感吃力，传统代理公司"全权包办"的模式又难以从根本上解决企业对专业能力的长期需求。针对这一痛点，中山市景博企服务咨询有限公司明确了独特的品牌定位——<span class="font-bold text-primary">"中国出口企业自营退税合规化赋能专家"</span>。</p>
+
+            <p class="text-slate-600 mb-6">与传统代理公司"替代企业完成退税流程"的服务模式不同，景博企服始终强调<span class="font-bold text-primary">"赋能企业自主操作"</span>的核心价值。这意味着公司并非简单接手企业的退税工作，而是通过系统性的培训、标准化的流程指导和智能化的工具支持，帮助企业打造属于自己的专业退税团队。</p>
+
+            <div class="highlight">
+                <p class="font-bold">核心差异点：</p>
+                <p>传统代理是"替你做"，景博企服是"教你做"。通过赋能自主操作，企业既能降低对外部代理的依赖，又能培养内部专业人才，实现退税工作的合规化与高效化双重目标。</p>
+            </div>
+
+            <p class="text-slate-600 mt-4">无论是初创型出口企业还是规模型外贸公司，在退税环节面临的"人才瓶颈"往往制约着业务发展。景博企服以"赋能者"而非"替代者"的角色，将专业知识转化为企业可掌握的实操能力，这种定位不仅体现了对行业痛点的深刻洞察，更展现了与企业共同成长的长期主义视角。</p>
+        </div>
+
+        <!-- 品牌传播关键词 -->
+        <div class="glassmorphism p-8 mb-12 card-hover">
+            <div class="flex items-center mb-6">
+                <div class="service-icon bg-primary">
+                    <i class="fas fa-key"></i>
+                </div>
+                <h3 class="text-2xl font-semibold ml-4">品牌传播关键词</h3>
+            </div>
+            <p class="text-slate-600 mb-6">在出口退税服务领域，品牌传播的核心在于精准传递价值认知。中山市景博企服务咨询有限公司精心提炼<span class="font-bold text-primary">"合规退税""自营赋能""专业护航""退税不难"</span>四大关键词，构建起覆盖企业全服务周期的品牌语言体系，确保每一次沟通都能直击企业需求痛点。</p>
+
+            <div class="overflow-x-auto mb-6">
+                <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                    <thead class="bg-primary text-white">
+                        <tr>
+                            <th class="py-3 px-4 text-left">关键词</th>
+                            <th class="py-3 px-4 text-left">核心价值主张</th>
+                            <th class="py-3 px-4 text-left">解决企业核心关切</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <td class="py-3 px-4 font-bold text-primary">合规退税</td>
+                            <td class="py-3 px-4">政策适配性</td>
+                            <td class="py-3 px-4">如何精准匹配最新退税政策？</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-bold text-primary">自营赋能</td>
+                            <td class="py-3 px-4">服务目标导向</td>
+                            <td class="py-3 px-4">如何通过服务提升企业竞争力？</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-bold text-primary">专业护航</td>
+                            <td class="py-3 px-4">团队能力保障</td>
+                            <td class="py-3 px-4">复杂流程能否得到专业支持？</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-bold text-primary">退税不难</td>
+                            <td class="py-3 px-4">心理痛点破解</td>
+                            <td class="py-3 px-4">退税流程是否真的可以简化？</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="highlight">
+                <p class="font-bold">记忆点打造逻辑：</p>
+                <p>四大关键词分别从政策安全（合规）、成长目标（赋能）、能力信任（护航）、情感价值（不难）四个维度，形成闭环式品牌认知，让企业在接触服务的初期就能建立"专业可靠、简单高效"的核心印象。</p>
+            </div>
+
+            <p class="text-slate-600 mt-4">"合规退税"强调对国家出口退税政策的深度解读与动态适配，确保企业在合法合规的前提下最大化退税收益；"自营赋能"聚焦服务的最终目标，通过优化退税流程反哺企业主营业务发展；"专业护航"则以团队的资深经验和技术能力为背书，消解企业对复杂财税流程的顾虑；而"退税不难"直击企业普遍存在的"流程繁琐、耗时费力"心理障碍，用轻量化表达降低决策门槛。这组关键词体系不仅覆盖了服务的专业维度，更兼顾了企业的情感需求，成为品牌与客户建立信任的重要桥梁。</p>
+        </div>
+    </section>
+
+    <!-- 联系与合作部分 -->
+    <section id="contact" class="container mx-auto py-12 px-4 md:px-8">
+        <h2 class="text-3xl font-bold mb-12 text-center text-primary">联系与合作</h2>
+
+        <div class="glassmorphism p-8 mb-12">
+            <p class="text-slate-600 mb-6">如果您的企业正面临出口退税流程复杂、政策解读不清晰等问题，中山市景博企服务咨询有限公司随时准备为您提供专业支持。我们深耕中山本地出口服务多年，致力于通过简单高效的合作模式，帮助企业轻松应对退税难题。</p>
+
+            <h3 class="text-2xl font-semibold mb-6 text-primary">联系方式全公开</h3>
+            <p class="text-slate-600 mb-6">我们深知及时沟通的重要性，特为您开通多渠道联系通道，确保您能随时随地找到我们：</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div>
+                    <ul class="space-y-3">
+                        <li><span class="font-bold">公司全称：</span>中山市景博企服务咨询有限公司</li>
+                        <li><span class="font-bold">办公地址：</span>中山市核心商务区（近中山港码头，交通便利）</li>
+                        <li><span class="font-bold">官方电话：</span>0760-XXXXXXX（工作日9:00-18:00专人值守）</li>
+                        <li><span class="font-bold">企业邮箱：</span>service@jingbo-consulting.com（24小时内邮件回复）</li>
+                    </ul>
+                </div>
+                <div class="flex items-center justify-center">
+                    <div class="bg-white p-4 rounded-lg shadow-md text-center">
+                        <p class="font-bold mb-2">官方微信公众号</p>
+                        <div class="bg-gray-200 w-32 h-32 mx-auto flex items-center justify-center">
+                            <i class="fas fa-qrcode text-4xl text-gray-500"></i>
+                        </div>
+                        <p class="text-sm mt-2">搜索"景博企服咨询"或扫描二维码关注</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <p class="font-bold">绿色通道服务</p>
+                <ul class="list-disc pl-5 space-y-2">
+                    <li><span class="font-bold">24小时退税咨询热线：</span>400-XXX-XXXX（节假日无休，紧急问题1小时响应）</li>
+                    <li><span class="font-bold">在线合规诊断预约入口：</span>通过公众号菜单栏"免费诊断"即可一键预约，3个工作日内出具初步评估报告</li>
+                </ul>
+            </div>
+
+            <h3 class="text-2xl font-semibold mb-6 mt-8 text-primary">四步轻松合作，门槛低至"零准备"</h3>
+            <p class="text-slate-600 mb-6">我们打破传统服务的繁琐流程，将合作步骤简化为清晰的四阶段，新老企业均可快速接入：</p>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                <div class="bg-blue-50 rounded-lg p-4">
+                    <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white mb-3 mx-auto">
+                        <span class="font-bold">1</span>
+                    </div>
+                    <h4 class="font-bold text-center mb-2">初步咨询</h4>
+                    <p class="text-sm text-slate-600 text-center">通过任一渠道联系我们，简要说明企业类型、出口产品及当前退税痛点</p>
+                </div>
+                <div class="bg-blue-50 rounded-lg p-4">
+                    <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white mb-3 mx-auto">
+                        <span class="font-bold">2</span>
+                    </div>
+                    <h4 class="font-bold text-center mb-2">需求评估</h4>
+                    <p class="text-sm text-slate-600 text-center">专业团队根据您的描述，结合最新政策，1个工作日内完成初步判断</p>
+                </div>
+                <div class="bg-blue-50 rounded-lg p-4">
+                    <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white mb-3 mx-auto">
+                        <span class="font-bold">3</span>
+                    </div>
+                    <h4 class="font-bold text-center mb-2">定制方案</h4>
+                    <p class="text-sm text-slate-600 text-center">针对评估结果，提供包含流程优化、风险规避、效率提升的个性化解决方案</p>
+                </div>
+                <div class="bg-blue-50 rounded-lg p-4">
+                    <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white mb-3 mx-auto">
+                        <span class="font-bold">4</span>
+                    </div>
+                    <h4 class="font-bold text-center mb-2">服务落地</h4>
+                    <p class="text-sm text-slate-600 text-center">签署正式协议后，全程由专属顾问跟进退税申报、资料对接、税务沟通等环节</p>
+                </div>
+            </div>
+
+            <p class="text-slate-600 text-center">无论是年出口额百万级的中小企业，还是刚起步的新外贸企业，我们均能提供适配的服务方案，真正实现"简单对接，专业搞定"。立即联系我们，让出口退税从负担变为企业的现金流助力！</p>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-primary text-white py-8">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-sm">© 2024 中山市景博企服务咨询有限公司. 保留所有权利.</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-white hover:text-blue-200 transition-colors"><i class="fab fa-weixin"></i></a>
+                    <a href="#" class="text-white hover:text-blue-200 transition-colors"><i class="fas fa-phone-alt"></i></a>
+                    <a href="#" class="text-white hover:text-blue-200 transition-colors"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="mt-6 pt-6 border-t border-blue-400 text-center text-sm">
+                <p>页面内容均由 AI 生成，仅供参考</p>
+                <p>created by <a href="https://space.coze.cn" class="underline hover:text-blue-200">coze space</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 添加滚动动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+
+                    // 点击导航链接后关闭移动端菜单
+                    const mobileMenu = document.getElementById('mobileMenu');
+                    if (mobileMenu.classList.contains('active')) {
+                        mobileMenu.classList.remove('active');
+                        // 同时切换图标回汉堡按钮
+                        const menuIcon = document.querySelector('#mobileMenuButton i');
+                        menuIcon.classList.remove('fa-times');
+                        menuIcon.classList.add('fa-bars');
+                    }
+                });
+            });
+
+            // 移动端导航菜单切换
+            const menuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            menuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+
+                // 切换图标
+                const icon = this.querySelector('i');
+                if (mobileMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            // 点击页面其他区域关闭移动端菜单
+            document.addEventListener('click', function(event) {
+                const isClickInsideNav = document.getElementById('mainNav').contains(event.target);
+
+                if (!isClickInsideNav && mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    const icon = menuButton.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            // 动画效果 - 滚动时显示元素
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.card-hover');
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.2;
+
+                    if (elementPosition < screenPosition) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+
+            // 初始化元素样式
+            document.querySelectorAll('.card-hover').forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'all 0.5s ease';
+            });
+
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // 初始加载时执行一次
+        });
+    </script>
+</body>
+</html>
